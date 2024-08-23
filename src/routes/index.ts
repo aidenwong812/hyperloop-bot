@@ -1,8 +1,9 @@
 import type TelegramBot from 'node-telegram-bot-api';
 
 import startRouter from './start.route';
-import volumeRouter from './volume.route';
-import packageRouter from './package.route';
+import exchangeRouter from './exchange.route';
+import currencyRouter from './currency.route';
+import statusRouter from './status.route';
 
 // const startRouter = require('./start.route');
 // const tokenRouter = require('./token.route');
@@ -17,8 +18,9 @@ import packageRouter from './package.route';
 
 export const router = (bot: TelegramBot) => {
   startRouter(bot);
-  volumeRouter(bot);
-  packageRouter(bot);
+  exchangeRouter(bot);
+  currencyRouter(bot);
+  statusRouter(bot);
   // tokenRouter(bot);
   // manageRouter(bot);
   // buyRouter(bot);
