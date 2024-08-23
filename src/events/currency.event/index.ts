@@ -57,6 +57,8 @@ export const selectInputCurrency = async (
         keyboard,
       },
     });
+  } else {
+    bot.sendMessage(chatId, 'Not supported currency.');
   }
 };
 
@@ -112,6 +114,8 @@ export const selectOutputCurrency = async (
         parse_mode: 'HTML',
       },
     );
+  } else {
+    bot.sendMessage(chatId, 'Not supported currency.');
   }
 };
 

@@ -13,6 +13,7 @@ export const CheckCurrenciesMessage = () => {
     - Ethereum (Binance Smart Chain)
     - Tron (TRX)
     - Solana (SOL)
+    - Polygon (Matic)
   `;
 };
 
