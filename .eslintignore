@@ -1,0 +1,4 @@
+node_modules
+build
+/src/models
+/src/store/index
