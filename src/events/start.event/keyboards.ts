@@ -5,18 +5,14 @@ export const StartKeyboard = () => [
 
 export const StartExchangeKeyboard = () => {
   return [
-    [
-      { text: 'Ethereum (ETH)', callback_data: 'Ethereum' },
-      { text: 'Ethereum (Base)', callback_data: 'Ethereum (Base)' },
-    ],
-    [
-      { text: 'Tron (TRX)', callback_data: 'Tron' },
-      { text: 'Solana (SOL)', callback_data: 'Solana' },
-    ],
+    [{ text: 'Ethereum (ETH)' }, { text: 'Ethereum (Base)' }],
+    [{ text: 'Tron (TRX)' }, { text: 'Solana (SOL)' }],
     [
       {
         text: 'Ethereum (Binance Smart Chain)',
-        callback_data: 'Ethereum (Binance Smart Chain)',
+      },
+      {
+        text: 'Polygon (Matic)',
       },
     ],
     [{ text: '❌ Cancel exchange', callback_data: '❌ Cancel exchange' }],

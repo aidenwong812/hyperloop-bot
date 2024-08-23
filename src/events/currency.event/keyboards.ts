@@ -17,6 +17,9 @@ export const StartExchangeKeyboard = (chatId: number) => {
         {
           text: 'Ethereum (Binance Smart Chain)',
         },
+        {
+          text: 'Polygon (Matic)',
+        },
       ],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
@@ -30,6 +33,9 @@ export const StartExchangeKeyboard = (chatId: number) => {
       [
         {
           text: 'Ethereum (Binance Smart Chain)',
+        },
+        {
+          text: 'Polygon (Matic)',
         },
       ],
       [{ text: '❌ Cancel exchange' }],
@@ -45,6 +51,9 @@ export const StartExchangeKeyboard = (chatId: number) => {
         {
           text: 'Ethereum (Binance Smart Chain)',
         },
+        {
+          text: 'Polygon (Matic)',
+        },
       ],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
@@ -58,6 +67,9 @@ export const StartExchangeKeyboard = (chatId: number) => {
       [
         {
           text: 'Ethereum (Binance Smart Chain)',
+        },
+        {
+          text: 'Polygon (Matic)',
         },
       ],
       [{ text: '❌ Cancel exchange' }],
@@ -73,6 +85,9 @@ export const StartExchangeKeyboard = (chatId: number) => {
         {
           text: '✅ Ethereum (Binance Smart Chain)',
         },
+        {
+          text: 'Polygon (Matic)',
+        },
       ],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
@@ -85,6 +100,9 @@ export const StartExchangeKeyboard = (chatId: number) => {
     [
       {
         text: 'Ethereum (Binance Smart Chain)',
+      },
+      {
+        text: 'Polygon (Matic)',
       },
     ],
     [{ text: '❌ Cancel exchange' }],
