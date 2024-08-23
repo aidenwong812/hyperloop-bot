@@ -12,16 +12,6 @@ const startRouter = (bot: TelegramBot) => {
   });
 
   bot.on('callback_query', async query => {
-    const { message } = query;
-    if (message && message.reply_markup?.inline_keyboard) {
-      const chatId = message.chat.id;
-      const messageId = message.message_id;
-      await bot.editMessageReplyMarkup(
-        { inline_keyboard: [] },
-        { chat_id: chatId, message_id: messageId },
-      );
-    }
-
     const data = query.data?.split(' ') || [];
 
     switch (data[0]) {

@@ -6,8 +6,12 @@ import { createSettings, findSettings } from 'controllers/settings.controller';
 import { createWallet, findWallet } from 'controllers/wallet.controller';
 import { trim } from 'utils';
 
-import { WelcomeMessage } from './messages';
-import { startKeyboard } from './keyboards';
+import {
+  CheckCurrenciesMessage,
+  StartExchangeMessage,
+  WelcomeMessage,
+} from './messages';
+import { StartExchangeKeyboard, StartKeyboard } from './keyboards';
 
 export const start = async (bot: TelegramBot, msg: Message, params: any) => {
   const chatId = msg.chat.id;
@@ -33,7 +37,7 @@ export const start = async (bot: TelegramBot, msg: Message, params: any) => {
     parse_mode: 'HTML',
     disable_web_page_preview: true,
     reply_markup: {
-      inline_keyboard: keyboard,
+      keyboard,
     },
   });
 
@@ -47,6 +51,32 @@ export const start = async (bot: TelegramBot, msg: Message, params: any) => {
 start.getMessage = async () => {
   return {
     message: trim(WelcomeMessage()),
-    keyboard: startKeyboard(),
+    keyboard: StartKeyboard(),
+  };
+};
+
+export const startExchange = async (bot: TelegramBot, msg: Message) => {
+  const chatId = msg.chat.id;
+
+  const { checkMessage, startExchangeMessage, keyboard } =
+    await startExchange.getMessage();
+
+  await bot.sendMessage(chatId, checkMessage, {
+    parse_mode: 'HTML',
+  });
+
+  await bot.sendMessage(chatId, startExchangeMessage, {
+    parse_mode: 'HTML',
+    reply_markup: {
+      keyboard,
+    },
+  });
+};
+
+startExchange.getMessage = async () => {
+  return {
+    checkMessage: trim(CheckCurrenciesMessage()),
+    startExchangeMessage: trim(StartExchangeMessage()),
+    keyboard: StartExchangeKeyboard(),
   };
 };

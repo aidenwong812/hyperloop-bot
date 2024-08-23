@@ -7,12 +7,7 @@ export const WelcomeMessage = () => {
 
 export const CheckCurrenciesMessage = () => {
   return `
-    These are the currencies currently supported:
-    - Ethereum (ETH)
-    - Ethereum (Base)
-    - Ethereum (Binance Smart Chain)
-    - Tron (TRX)
-    - Solana (SOL)
+    Check out supported currencies: <a href="https://changenow.io/currencies">https://changenow.io/currencies</a>
   `;
 };
 

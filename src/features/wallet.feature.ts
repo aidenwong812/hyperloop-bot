@@ -1,4 +1,4 @@
-import { Keypair, PublicKey } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import TelegramBot from 'node-telegram-bot-api';
 import connection from 'configs/connection';
 import { MainPackages, MicroPackages, waitingTime } from 'constants/consts';
@@ -60,8 +60,4 @@ export const waitForFunds = (bot: TelegramBot, chatId: number) => {
       );
     }
   }, waitingTime);
-};
-
-export const generateWallets = (numberOfWallets: number): Keypair[] => {
-  let wallets: Keypair[] = [];
 };
