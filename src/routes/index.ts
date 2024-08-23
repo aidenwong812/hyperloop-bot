@@ -5,31 +5,11 @@ import exchangeRouter from './exchange.route';
 import currencyRouter from './currency.route';
 import statusRouter from './status.route';
 
-// const startRouter = require('./start.route');
-// const tokenRouter = require('./token.route');
-// const manageRouter = require('./manage.route');
-// const buyRouter = require('./buy.route');
-// const sellRouter = require('./sell.route');
-// const walletRouter = require('./wallet.route');
-// const withdrawRouter = require('./withdraw.route');
-// const settingsRouter = require('./settings.route');
-// const referralsRouter = require('./referrals.route');
-// const helpRouter = require('./help.route');
-
 export const router = (bot: TelegramBot) => {
   startRouter(bot);
   exchangeRouter(bot);
   currencyRouter(bot);
   statusRouter(bot);
-  // tokenRouter(bot);
-  // manageRouter(bot);
-  // buyRouter(bot);
-  // sellRouter(bot);
-  // walletRouter(bot);
-  // withdrawRouter(bot);
-  // settingsRouter(bot);
-  // referralsRouter(bot);
-  // helpRouter(bot);
 
   bot.on('callback_query', query => {
     if (query) {
