@@ -3,6 +3,7 @@ import {
   ExchangeData,
   ExchangeTransaction,
   FixedRateMarket,
+  TransactionStatus,
 } from 'constants/interface';
 
 const V1_BASE_URL = 'https://api.changenow.io/v1';
@@ -95,7 +96,7 @@ export const createExchangeTransaction = async (
 
 export const getTransactionStatus = async (
   transactionId: string,
-): Promise<string> => {
+): Promise<TransactionStatus> => {
   const options = {
     method: 'GET',
   };

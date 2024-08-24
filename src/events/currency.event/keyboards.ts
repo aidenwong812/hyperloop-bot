@@ -21,6 +21,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
           text: 'Polygon (Matic)',
         },
       ],
+      [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
     ];
@@ -38,6 +39,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
           text: 'Polygon (Matic)',
         },
       ],
+      [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
     ];
@@ -55,6 +57,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
           text: 'Polygon (Matic)',
         },
       ],
+      [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
     ];
@@ -72,6 +75,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
           text: 'Polygon (Matic)',
         },
       ],
+      [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
     ];
@@ -89,6 +93,43 @@ export const StartExchangeKeyboard = (chatId: number) => {
           text: 'Polygon (Matic)',
         },
       ],
+      [{ text: 'Sui (Sui)' }],
+      [{ text: '❌ Cancel exchange' }],
+      [{ text: '❕ Support Info' }],
+    ];
+  }
+
+  if (inputCurrency === 'Polygon (Matic)') {
+    return [
+      [{ text: 'Ethereum (ETH)' }, { text: 'Ethereum (Base)' }],
+      [{ text: 'Tron (TRX)' }, { text: 'Solana (SOL)' }],
+      [
+        {
+          text: 'Ethereum (Binance Smart Chain)',
+        },
+        {
+          text: '✅ Polygon (Matic)',
+        },
+      ],
+      [{ text: 'Sui (Sui)' }],
+      [{ text: '❌ Cancel exchange' }],
+      [{ text: '❕ Support Info' }],
+    ];
+  }
+
+  if (inputCurrency === 'Sui') {
+    return [
+      [{ text: 'Ethereum (ETH)' }, { text: 'Ethereum (Base)' }],
+      [{ text: 'Tron (TRX)' }, { text: 'Solana (SOL)' }],
+      [
+        {
+          text: 'Ethereum (Binance Smart Chain)',
+        },
+        {
+          text: 'Polygon (Matic)',
+        },
+      ],
+      [{ text: '✅ Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
       [{ text: '❕ Support Info' }],
     ];
@@ -105,6 +146,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
         text: 'Polygon (Matic)',
       },
     ],
+    [{ text: 'Sui (Sui)' }],
     [{ text: '❌ Cancel exchange' }],
     [{ text: '❕ Support Info' }],
   ];
