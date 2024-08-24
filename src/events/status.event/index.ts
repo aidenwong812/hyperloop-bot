@@ -11,7 +11,22 @@ export const checkTransactionStatus = async (
 
   const transactionStatus = await getTransactionStatus(transactionId);
 
-  bot.sendMessage(chatId, `Your transaction status is ${transactionStatus}.`);
+  if (
+    transactionStatus.status === 'new' ||
+    transactionStatus.status === 'waiting'
+  ) {
+    if (new Date(transactionStatus.validUntil).getDate() < Date.now()) {
+      bot.sendMessage(
+        chatId,
+        `Your transaction ${transactionStatus.id} is expired.`,
+      );
+    }
+  }
+
+  bot.sendMessage(
+    chatId,
+    `Your transaction status is ${transactionStatus.status}.`,
+  );
 };
 
 export const checkPoints = async (bot: TelegramBot, msg: Message) => {

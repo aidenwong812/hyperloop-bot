@@ -15,6 +15,7 @@ export const StartExchangeKeyboard = () => {
         text: 'Polygon (Matic)',
       },
     ],
+    [{ text: 'Sui (Sui)' }],
     [{ text: '❌ Cancel exchange', callback_data: '❌ Cancel exchange' }],
     [{ text: '❕ Support Info', callback_data: 'ℹ️ Support Info' }],
   ];

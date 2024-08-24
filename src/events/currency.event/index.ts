@@ -20,7 +20,8 @@ export const selectInputCurrency = async (
   if (
     currency === 'Ethereum (ETH)' ||
     currency === 'Tron (TRX)' ||
-    currency === 'Solana (SOL)'
+    currency === 'Solana (SOL)' ||
+    currency === 'Sui (Sui)'
   ) {
     selectedCurrency = await selectCurrency(currency.split(' ')[0]);
   } else {
@@ -81,7 +82,8 @@ export const selectOutputCurrency = async (
   if (
     currency === 'Ethereum (ETH)' ||
     currency === 'Tron (TRX)' ||
-    currency === 'Solana (SOL)'
+    currency === 'Solana (SOL)' ||
+    currency === 'Sui (Sui)'
   ) {
     selectedCurrency = await selectCurrency(currency.split(' ')[0]);
   } else {
