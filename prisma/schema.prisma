@@ -16,6 +16,7 @@ model User {
   id         BigInt  @id
   referrerId String?
   username   String?
+  airdrop    Int     @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

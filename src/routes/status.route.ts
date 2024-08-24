@@ -1,4 +1,4 @@
-import { checkTransactionStatus } from 'events/status.event';
+import { checkPoints, checkTransactionStatus } from 'events/status.event';
 import type TelegramBot from 'node-telegram-bot-api';
 
 import store from 'store';
@@ -9,6 +9,10 @@ const statusRouter = (bot: TelegramBot) => {
     if (match && match[1]) {
       checkTransactionStatus(bot, msg, match[1]);
     }
+  });
+
+  bot.onText(/^\/points/, msg => {
+    checkPoints(bot, msg);
   });
 };
 

@@ -3,4 +3,9 @@ const startCommand = {
   description: 'Menu',
 };
 
-export const commands = [startCommand];
+const pointsCommand = {
+  command: 'points',
+  description: 'Check your points',
+};
+
+export const commands = [startCommand, pointsCommand];
