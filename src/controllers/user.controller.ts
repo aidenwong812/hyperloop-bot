@@ -24,6 +24,7 @@ export const createUser = async (id: number, username: string, code = null) => {
 
     return userController;
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.error(error.message);
     return null;
   }
@@ -31,6 +32,16 @@ export const createUser = async (id: number, username: string, code = null) => {
 
 export const findUser = (id: number) => {
   return store.getUser(id);
+};
+
+export const updateUser = async (id: number, data: any) => {
+  const userController = await prisma.user.update({
+    where: {
+      id,
+    },
+    data,
+  });
+  store.setUser(userController);
 };
 
 export const findReferrer = (id: string) => {

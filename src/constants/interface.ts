@@ -30,6 +30,8 @@ export interface ExchangeTransaction {
   validUntil: string;
   amount: number;
   directedAmount: number;
+  error: string;
+  message: string;
 }
 
 export interface ExchangeData {
