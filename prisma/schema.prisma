@@ -26,15 +26,16 @@ model User {
   @@map("users")
 }
 
-model Wallet {
-  id        BigInt @id
-  publicKey String
-  secretKey String
+model Transaction {
+  transactionId String  @id
+  userId        BigInt
+  status        String  @default("waiting")
+  isValid       Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("wallets")
+  @@map("transactions")
 }
 
 model Settings {

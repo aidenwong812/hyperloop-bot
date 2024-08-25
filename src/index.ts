@@ -13,4 +13,5 @@ dotenv.config();
   router(bot);
 })();
 
+// eslint-disable-next-line no-console
 console.log('\n HyperLoop Bot is running... \n');

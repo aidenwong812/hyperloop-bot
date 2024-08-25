@@ -2,16 +2,9 @@
 
 const store = {
   users: {},
-  wallets: {},
+  transactions: {},
   referrers: {},
   numberOfReferrals: {},
-  lifeTimeIncomes: {},
-  intervalID: {
-    start: null,
-    managePositions: null,
-    token: null,
-    autoSell: null,
-  },
   setting: {},
 
   getUser(id: number) {
@@ -23,13 +16,13 @@ const store = {
     this.users[id] = user;
   },
 
-  getWallet(id: number) {
-    return this.wallets[id] || null;
+  getTransaction(transactionId: string) {
+    return this.transactions[transactionId] || null;
   },
 
-  setWallet(wallet: any) {
-    const { id } = wallet;
-    this.wallets[id] = wallet;
+  setTransaction(transaction: any) {
+    const { transactionId } = transaction;
+    this.transactions[transactionId] = transaction;
   },
 
   getReferrer(id: string) {
@@ -41,40 +34,6 @@ const store = {
     if (referrerId) {
       this.referrers[referrerId.toString()] = id;
     }
-  },
-
-  getIntervalID() {
-    return (
-      this.intervalID || {
-        start: null,
-        managePositions: null,
-        token: null,
-        autoSell: null,
-      }
-    );
-  },
-
-  setIntervalID(id: any) {
-    this.intervalID = id;
-  },
-
-  clearAllInterval() {
-    if (this.intervalID?.start) {
-      clearInterval(this.intervalID.start);
-    }
-    if (this.intervalID?.managePositions) {
-      clearInterval(this.intervalID.managePositions);
-    }
-    if (this.intervalID?.token) {
-      clearInterval(this.intervalID.token);
-    }
-
-    this.intervalID = {
-      start: null,
-      managePositions: null,
-      token: null,
-      autoSell: this.intervalID.autoSell,
-    };
   },
 
   getSetting(id: number) {

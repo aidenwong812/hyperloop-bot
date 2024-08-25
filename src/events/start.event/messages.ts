@@ -19,6 +19,6 @@ export const CheckCurrenciesMessage = () => {
 
 export const StartExchangeMessage = () => {
   return `
-    Choose one of the popular currencies offered below or enter the currency you would like to send in the “BTC” or “Bitcoin” format.
+    Choose one of the popular currencies offered below
   `;
 };

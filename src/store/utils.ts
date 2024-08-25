@@ -1,21 +1,15 @@
 import { findAllUsers } from 'controllers/user.controller';
-import { findAllWallets } from 'controllers/wallet.controller';
+import { findAllTransactions } from 'controllers/transaction.controller';
 
 const initStore = async (store: any) => {
   const users = await findAllUsers();
-  const wallets = await findAllWallets();
+  const transactions = await findAllTransactions();
 
   users.forEach((user: any) => {
     store.setUser(user);
     store.setReferrer(user);
   });
-  wallets.forEach((wallet: any) => store.setWallet(wallet));
-
-  store.setIntervalID({
-    start: null,
-    managePositions: null,
-    token: null,
-  });
+  transactions.forEach((transaction: any) => store.setWallet(transaction));
 };
 
 export default initStore;
