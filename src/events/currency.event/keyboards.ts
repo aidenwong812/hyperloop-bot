@@ -63,7 +63,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
     ];
   }
 
-  if (inputCurrency === 'SOLANA') {
+  if (inputCurrency === 'Solana') {
     return [
       [{ text: 'Ethereum (ETH)' }, { text: 'Ethereum (Base)' }],
       [{ text: 'Tron (TRX)' }, { text: '✅ Solana (SOL)' }],
