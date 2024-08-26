@@ -106,5 +106,5 @@ export const getTransactionStatus = async (
     options,
   ).then(response => response.json());
 
-  return res.status;
+  return res;
 };

@@ -2,6 +2,8 @@ import TelegramBot, { Message } from 'node-telegram-bot-api';
 
 import { createUser, findUser } from 'controllers/user.controller';
 import { trim } from 'utils';
+import * as fs from 'fs';
+import path from 'path';
 
 import {
   CheckCurrenciesMessage,
@@ -21,9 +23,11 @@ export const start = async (bot: TelegramBot, msg: Message, params: any) => {
 
   const { message, keyboard } = await start.getMessage();
 
-  bot.sendMessage(chatId, message, {
+  const WelcomePhoto = fs.readFileSync(path.resolve('src/assets/splash.jpg'));
+
+  bot.sendPhoto(chatId, WelcomePhoto, {
+    caption: message,
     parse_mode: 'HTML',
-    disable_web_page_preview: true,
     reply_markup: {
       keyboard,
     },

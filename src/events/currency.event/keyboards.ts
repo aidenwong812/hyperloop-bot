@@ -1,8 +1,8 @@
 import store from 'store';
 
 export const StartKeyboard = () => [
-  [{ text: 'Start new exchange', callback_data: 'Start new exchange' }],
-  [{ text: '❕ Support Info', callback_data: 'ℹ️ Support Info' }],
+  [{ text: 'Start new exchange' }],
+  [{ text: '❕ Advertise' }],
 ];
 
 export const StartExchangeKeyboard = (chatId: number) => {
@@ -23,7 +23,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -41,7 +41,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -59,7 +59,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -77,7 +77,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -95,7 +95,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -113,7 +113,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: 'Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -131,7 +131,7 @@ export const StartExchangeKeyboard = (chatId: number) => {
       ],
       [{ text: '✅ Sui (Sui)' }],
       [{ text: '❌ Cancel exchange' }],
-      [{ text: '❕ Support Info' }],
+      [{ text: '❕ Advertise' }],
     ];
   }
 
@@ -148,6 +148,6 @@ export const StartExchangeKeyboard = (chatId: number) => {
     ],
     [{ text: 'Sui (Sui)' }],
     [{ text: '❌ Cancel exchange' }],
-    [{ text: '❕ Support Info' }],
+    [{ text: '❕ Advertise' }],
   ];
 };

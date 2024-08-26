@@ -1,6 +1,6 @@
 export const StartKeyboard = () => [
   [{ text: 'Start new exchange', callback_data: 'Start new exchange' }],
-  [{ text: '❕ Support Info', callback_data: 'ℹ️ Support Info' }],
+  [{ text: '❕ Advertise' }],
 ];
 
 export const StartExchangeKeyboard = () => {
@@ -17,6 +17,6 @@ export const StartExchangeKeyboard = () => {
     ],
     [{ text: 'Sui (Sui)' }],
     [{ text: '❌ Cancel exchange', callback_data: '❌ Cancel exchange' }],
-    [{ text: '❕ Support Info', callback_data: 'ℹ️ Support Info' }],
+    [{ text: '❕ Advertise' }],
   ];
 };
