@@ -4,12 +4,14 @@ import startRouter from './start.route';
 import exchangeRouter from './exchange.route';
 import currencyRouter from './currency.route';
 import statusRouter from './status.route';
+import helpRouter from './help.route';
 
 export const router = (bot: TelegramBot) => {
   startRouter(bot);
   exchangeRouter(bot);
   currencyRouter(bot);
   statusRouter(bot);
+  helpRouter(bot);
 
   bot.on('callback_query', query => {
     if (query) {

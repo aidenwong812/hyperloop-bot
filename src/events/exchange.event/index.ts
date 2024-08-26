@@ -4,7 +4,7 @@ import { createTransaction } from 'controllers/transaction.controller';
 import { calculateAirdropPoint } from 'features/status.feature';
 import {
   createExchangeTransaction,
-  getEstimatedFixedRateExchangeAmount,
+  getEstimatedExchangeAmount,
   getMinimalExchangeAmount,
 } from 'services/change-now';
 import store from 'store';
@@ -35,7 +35,7 @@ export const handleInputAmount = async (
     return;
   }
 
-  const exchangeData = await getEstimatedFixedRateExchangeAmount(
+  const exchangeData = await getEstimatedExchangeAmount(
     inputCurrency.ticker,
     outputCurrency.ticker,
     inputAmount,

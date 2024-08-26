@@ -2,6 +2,8 @@ import {
   Currency,
   ExchangeData,
   ExchangeTransaction,
+  FixedRateExchangeData,
+  FixedRateExchangeTransaction,
   FixedRateMarket,
   TransactionStatus,
 } from 'constants/interface';
@@ -15,7 +17,7 @@ export const getAvailableCurrencies = async (): Promise<Currency[]> => {
   };
 
   const res = await fetch(
-    `${V1_BASE_URL}/currencies?active=true&fixedRate=true`,
+    `${V1_BASE_URL}/currencies?active=true`,
     options,
   ).then(response => response.json());
 
@@ -57,13 +59,54 @@ export const getEstimatedFixedRateExchangeAmount = async (
   inputCurrency: string,
   outputCurrency: string,
   inputAmount: number,
-): Promise<ExchangeData> => {
+): Promise<FixedRateExchangeData> => {
   const options = {
     method: 'GET',
   };
 
   const res = await fetch(
     `${V1_BASE_URL}/exchange-amount/fixed-rate/${inputAmount}/${inputCurrency}_${outputCurrency}?api_key=${apiKey}&useRateId=true`,
+    options,
+  ).then(response => response.json());
+
+  return res;
+};
+
+export const getEstimatedExchangeAmount = async (
+  inputCurrency: string,
+  outputCurrency: string,
+  inputAmount: number,
+): Promise<ExchangeData> => {
+  const options = {
+    method: 'GET',
+  };
+
+  const res = await fetch(
+    `${V1_BASE_URL}/exchange-amount/${inputAmount}/${inputCurrency}_${outputCurrency}?api_key=${apiKey}`,
+    options,
+  ).then(response => response.json());
+
+  return res;
+};
+
+export const createFixedRateExchangeTransaction = async (
+  inputCurrency: string,
+  outputCurrency: string,
+  inputAmount: number,
+  recipientAddress: string,
+): Promise<FixedRateExchangeTransaction> => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      from: inputCurrency,
+      to: outputCurrency,
+      amount: inputAmount,
+      address: recipientAddress,
+    }),
+  };
+
+  const res = await fetch(
+    `${V1_BASE_URL}/transactions/fixed-rate/${apiKey}`,
     options,
   ).then(response => response.json());
 
@@ -87,7 +130,7 @@ export const createExchangeTransaction = async (
   };
 
   const res = await fetch(
-    `${V1_BASE_URL}/transactions/fixed-rate/${apiKey}`,
+    `${V1_BASE_URL}/transactions/${apiKey}`,
     options,
   ).then(response => response.json());
 

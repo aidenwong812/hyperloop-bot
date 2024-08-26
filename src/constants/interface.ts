@@ -22,23 +22,28 @@ export interface ExchangeTransaction {
   id: string;
   payinAddress: string;
   payoutAddress: string;
-  payoutExtraId: string;
   fromCurrency: string;
   toCurrency: string;
-  refundAddress: string;
-  refundExtraId: string;
-  validUntil: string;
   amount: number;
   directedAmount: number;
   error: string;
   message: string;
 }
 
+export interface FixedRateExchangeTransaction extends ExchangeTransaction {
+  payoutExtraId: string;
+  refundAddress: string;
+  refundExtraId: string;
+  validUntil: string;
+}
+
 export interface ExchangeData {
   estimatedAmount: number;
-  networkFee: number;
   transactionSpeedForecast: string;
   warningMessage: string | null;
+}
+export interface FixedRateExchangeData extends ExchangeData {
+  networkFee: number;
   rateId: string;
   validUntil: string;
 }
