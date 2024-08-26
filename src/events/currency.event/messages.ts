@@ -6,6 +6,6 @@ export const CheckCurrenciesMessage = () => {
 
 export const StartExchangeMessage = () => {
   return `
-    Choose one of the popular currencies offered below, we will be expanding to other currencies and chains in the near future.
+    Choose the currency you want to bridge to
   `;
 };
