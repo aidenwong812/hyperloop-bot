@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "start": "set NODE_PATH=src/&& nodemon src/index.ts",
+    "start": "nodemon -r tsconfig-paths/register src/index.ts",
     "db:push": "yarn prisma db push",
     "lint": "eslint src --fix",
     "prettier:fix": "prettier --write",
@@ -40,6 +40,7 @@
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript-eslint": "^8.1.0"
   }
 }
