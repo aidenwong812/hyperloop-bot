@@ -9,7 +9,7 @@ const initStore = async (store: any) => {
     store.setUser(user);
     store.setReferrer(user);
   });
-  transactions.forEach((transaction: any) => store.setWallet(transaction));
+  transactions.forEach((transaction: any) => store.setTransaction(transaction));
 };
 
 export default initStore;

@@ -25,12 +25,13 @@ export const checkTransactionStatus = async (
     transactionStatus.status === 'new' ||
     transactionStatus.status === 'waiting'
   ) {
-    if (new Date(transactionStatus.validUntil).getDate() < Date.now()) {
+    if (new Date(transactionStatus.validUntil).getTime() < Date.now()) {
       bot.sendMessage(
         chatId,
         `Your transaction ${transactionStatus.id} is expired.`,
       );
       updateTransaction(transactionStatus.id, { isValid: false });
+      return;
     }
   }
 
