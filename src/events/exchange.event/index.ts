@@ -1,7 +1,6 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
-import { findUser, updateUser } from 'controllers/user.controller';
+import { findUser } from 'controllers/user.controller';
 import { createTransaction } from 'controllers/transaction.controller';
-import { calculateAirdropPoint } from 'features/status.feature';
 import {
   createExchangeTransaction,
   getEstimatedExchangeAmount,
@@ -120,12 +119,6 @@ export const handleConfirm = async (bot: TelegramBot, msg: Message) => {
   const user = await findUser(chatId);
 
   createTransaction({ userId: user.id, transactionId: transaction.id });
-
-  const airdropPoint = await calculateAirdropPoint(
-    inputCurrency.ticker,
-    inputAmount,
-  );
-  updateUser(user.id, { airdrop: user.airdrop + airdropPoint });
 
   bot.sendMessage(
     chatId,
