@@ -23,7 +23,7 @@ const statusRouter = (bot: TelegramBot) => {
       return;
     }
 
-    if (!text.startsWith('/')) {
+    if (text.startsWith('/')) {
       return;
     }
 
