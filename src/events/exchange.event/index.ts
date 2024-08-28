@@ -7,7 +7,7 @@ import {
   getMinimalExchangeAmount,
 } from 'services/change-now';
 import store from 'store';
-import { ConfirmKeyboard } from './keyboard';
+import { ConfirmKeyboard, StartKeyboard } from './keyboard';
 
 export const handleInputAmount = async (
   bot: TelegramBot,
@@ -120,6 +120,8 @@ export const handleConfirm = async (bot: TelegramBot, msg: Message) => {
 
   createTransaction({ userId: user.id, transactionId: transaction.id });
 
+  const { keyboard } = handleOutputAmount.getMessage();
+
   bot.sendMessage(
     chatId,
     `You're sending <b>${inputAmount} ${inputCurrency.ticker.toUpperCase()}</b>; you'll get <b>~${exchangeData.estimatedAmount} ${outputCurrency.ticker.toUpperCase()}</b>.
@@ -138,5 +140,17 @@ In order to start the exchange, use your wallet to send your deposit to this add
   bot.sendMessage(
     chatId,
     'We are waiting for your coins to be received. No pressure, though. Keep in mind - we will update the status when the deposit is received.',
+    {
+      reply_markup: {
+        keyboard,
+      },
+    },
   );
+  store.clearSetting(msg.chat.id);
+};
+
+handleConfirm.getMessage = () => {
+  return {
+    keyboard: StartKeyboard(),
+  };
 };

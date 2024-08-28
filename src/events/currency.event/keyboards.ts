@@ -2,6 +2,7 @@ import store from 'store';
 
 export const StartKeyboard = () => [
   [{ text: 'Start new exchange' }],
+  [{ text: 'Check Status' }],
   [{ text: '❕ Advertise' }],
 ];
 
