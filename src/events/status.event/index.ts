@@ -1,8 +1,6 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
-// import {
-//   findTransaction,
-//   updateTransaction,
-// } from 'controllers/transaction.controller';
+import { findUser, updateUser } from 'controllers/user.controller';
+import { calculateAirdropPoint } from 'features/status.feature';
 import { getTransactionStatus } from 'services/change-now';
 import store from 'store';
 
@@ -13,27 +11,16 @@ export const checkTransactionStatus = async (
 ) => {
   const chatId = msg.chat.id;
 
-  // const transaction = await findTransaction(transactionId);
-  // if (transaction && !transaction.isValid) {
-  //   bot.sendMessage(chatId, `Your transaction ${transactionId} is expired.`);
-  //   return;
-  // }
-
   const transactionStatus = await getTransactionStatus(transactionId);
 
-  // if (
-  //   transactionStatus.status === 'new' ||
-  //   transactionStatus.status === 'waiting'
-  // ) {
-  //   if (new Date(transactionStatus.validUntil).getTime() < Date.now()) {
-  //     bot.sendMessage(
-  //       chatId,
-  //       `Your transaction ${transactionStatus.id} is expired.`,
-  //     );
-  //     updateTransaction(transactionStatus.id, { isValid: false });
-  //     return;
-  //   }
-  // }
+  const user = await findUser(chatId);
+  if (transactionStatus.status === 'finished') {
+    const airdropPoint = await calculateAirdropPoint(
+      transactionStatus.fromCurrency,
+      transactionStatus.amountSend,
+    );
+    updateUser(user.id, { airdrop: user.airdrop + airdropPoint });
+  }
 
   bot.sendMessage(
     chatId,
