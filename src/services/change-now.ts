@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
   Currency,
   ExchangeData,
@@ -12,47 +14,30 @@ const V1_BASE_URL = 'https://api.changenow.io/v1';
 const apiKey = process.env.ChangeNOW_API_KEY;
 
 export const getAvailableCurrencies = async (): Promise<Currency[]> => {
-  const options = {
-    method: 'GET',
-  };
+  const res = await axios.get(`${V1_BASE_URL}/currencies?active=true`);
 
-  const res = await fetch(
-    `${V1_BASE_URL}/currencies?active=true`,
-    options,
-  ).then(response => response.json());
-
-  return res;
+  return res.data;
 };
 
 export const getAvailableFixedRateMarkets = async (): Promise<
   FixedRateMarket[]
 > => {
-  const options = {
-    method: 'GET',
-  };
-
-  const res = await fetch(
+  const res = await axios.get(
     `${V1_BASE_URL}/market-info/fixed-rate/${apiKey}`,
-    options,
-  ).then(response => response.json());
+  );
 
-  return res;
+  return res.data;
 };
 
 export const getMinimalExchangeAmount = async (
   inputCurrency: string,
   outputCurrency: string,
 ): Promise<number> => {
-  const options = {
-    method: 'GET',
-  };
-
-  const res = await fetch(
+  const res = await axios.get(
     `${V1_BASE_URL}/min-amount/${inputCurrency}_${outputCurrency}?api_key=${apiKey}`,
-    options,
-  ).then(response => response.json());
+  );
 
-  return res?.minAmount || 0;
+  return res.data?.minAmount || 0;
 };
 
 export const getEstimatedFixedRateExchangeAmount = async (
@@ -77,16 +62,11 @@ export const getEstimatedExchangeAmount = async (
   outputCurrency: string,
   inputAmount: number,
 ): Promise<ExchangeData> => {
-  const options = {
-    method: 'GET',
-  };
-
-  const res = await fetch(
+  const res = await axios.get(
     `${V1_BASE_URL}/exchange-amount/${inputAmount}/${inputCurrency}_${outputCurrency}?api_key=${apiKey}`,
-    options,
-  ).then(response => response.json());
+  );
 
-  return res;
+  return res.data;
 };
 
 export const createFixedRateExchangeTransaction = async (
@@ -95,22 +75,17 @@ export const createFixedRateExchangeTransaction = async (
   inputAmount: number,
   recipientAddress: string,
 ): Promise<FixedRateExchangeTransaction> => {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({
+  const res = await axios.post(
+    `${V1_BASE_URL}/transactions/fixed-rate/${apiKey}`,
+    {
       from: inputCurrency,
       to: outputCurrency,
       amount: inputAmount,
       address: recipientAddress,
-    }),
-  };
+    },
+  );
 
-  const res = await fetch(
-    `${V1_BASE_URL}/transactions/fixed-rate/${apiKey}`,
-    options,
-  ).then(response => response.json());
-
-  return res;
+  return res.data;
 };
 
 export const createExchangeTransaction = async (
