@@ -45,16 +45,11 @@ export const getEstimatedFixedRateExchangeAmount = async (
   outputCurrency: string,
   inputAmount: number,
 ): Promise<FixedRateExchangeData> => {
-  const options = {
-    method: 'GET',
-  };
-
-  const res = await fetch(
+  const res = await axios.get(
     `${V1_BASE_URL}/exchange-amount/fixed-rate/${inputAmount}/${inputCurrency}_${outputCurrency}?api_key=${apiKey}&useRateId=true`,
-    options,
-  ).then(response => response.json());
+  );
 
-  return res;
+  return res.data;
 };
 
 export const getEstimatedExchangeAmount = async (
@@ -94,35 +89,25 @@ export const createExchangeTransaction = async (
   inputAmount: number,
   recipientAddress: string,
 ): Promise<ExchangeTransaction> => {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({
-      from: inputCurrency,
-      to: outputCurrency,
-      amount: inputAmount,
-      address: recipientAddress,
-    }),
-  };
+  const res = await axios.post(`${V1_BASE_URL}/transactions/${apiKey}`, {
+    from: inputCurrency,
+    to: outputCurrency,
+    amount: inputAmount,
+    address: recipientAddress,
+  });
 
-  const res = await fetch(
-    `${V1_BASE_URL}/transactions/${apiKey}`,
-    options,
-  ).then(response => response.json());
-
-  return res;
+  return res.data;
 };
 
 export const getTransactionStatus = async (
   transactionId: string,
-): Promise<TransactionStatus> => {
-  const options = {
-    method: 'GET',
-  };
-
-  const res = await fetch(
-    `${V1_BASE_URL}/transactions/${transactionId}/${apiKey}`,
-    options,
-  ).then(response => response.json());
-
-  return res;
+): Promise<TransactionStatus | { status: 'error' }> => {
+  try {
+    const res = await axios.get(
+      `${V1_BASE_URL}/transactions/${transactionId}/${apiKey}`,
+    );
+    return res.data;
+  } catch {
+    return { status: 'error' };
+  }
 };

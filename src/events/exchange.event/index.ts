@@ -49,9 +49,6 @@ You're sending <b>${inputAmount} ${inputCurrency.ticker.toUpperCase()}</b>; you'
 Enter the recipient <b>${outputCurrency.ticker.toUpperCase()}</b> wallet address.`,
     {
       parse_mode: 'HTML',
-      reply_markup: {
-        keyboard: [[]],
-      },
     },
   );
 };
@@ -117,10 +114,14 @@ export const handleConfirm = async (bot: TelegramBot, msg: Message) => {
   }
 
   const user = await findUser(chatId);
+  const transactionId = btoa(transaction.id).replace(/=+$/, '');
 
-  createTransaction({ userId: user.id, transactionId: transaction.id });
+  createTransaction({
+    userId: user.id,
+    transactionId,
+  });
 
-  const { keyboard } = handleOutputAmount.getMessage();
+  const { keyboard } = handleConfirm.getMessage();
 
   bot.sendMessage(
     chatId,
@@ -132,10 +133,10 @@ In order to start the exchange, use your wallet to send your deposit to this add
     },
   );
   bot.sendMessage(chatId, transaction.payinAddress);
-  bot.sendMessage(chatId, `Transaction ID - ${transaction.id}`);
+  bot.sendMessage(chatId, `Transaction ID - ${transactionId}`);
   bot.sendMessage(
     chatId,
-    `click to ping your transaction:\n/status_${transaction.id}`,
+    `click to ping your transaction:\n/status_${transactionId}`,
   );
   bot.sendMessage(
     chatId,

@@ -12,6 +12,10 @@ const currencyRouter = (bot: TelegramBot) => {
       return;
     }
 
+    if (text.startsWith('/')) {
+      return;
+    }
+
     const settings = store.getSetting(msg.chat.id);
 
     if (settings && settings.start && !settings.outputCurrency) {

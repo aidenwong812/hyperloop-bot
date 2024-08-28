@@ -4,6 +4,7 @@ import { calculateAirdropPoint } from 'features/status.feature';
 import { getTransactionStatus } from 'services/change-now';
 import store from 'store';
 import {
+  deleteTransaction,
   findAllTransactions,
   updateTransaction,
 } from 'controllers/transaction.controller';
@@ -15,7 +16,13 @@ export const checkTransactionStatus = async (
 ) => {
   const chatId = msg.chat.id;
 
-  const transactionStatus = await getTransactionStatus(transactionId);
+  const transactionStatus = await getTransactionStatus(atob(transactionId));
+
+  if (transactionStatus.status === 'error') {
+    bot.sendMessage(chatId, 'This transaction is invalid.');
+    deleteTransaction(transactionId);
+    return;
+  }
 
   const user = await findUser(chatId);
   if (transactionStatus.status === 'finished') {
@@ -44,10 +51,24 @@ export const checkAllTransactionStatus = async (
     one => Number(one.userId) === chatId && one.isValid,
   );
 
+  if (userTransactions.length === 0) {
+    bot.sendMessage(chatId, 'You have no transactions.');
+    return;
+  }
+
   userTransactions.map(async transaction => {
     const transactionStatus = await getTransactionStatus(
-      transaction.transactionId,
+      atob(transaction.transactionId),
     );
+
+    if (transactionStatus.status === 'error') {
+      bot.sendMessage(
+        chatId,
+        `Your transaction ${transaction.transactionId} is invalid.`,
+      );
+      deleteTransaction(transaction.transactionId);
+      return;
+    }
 
     const user = await findUser(chatId);
     if (transactionStatus.status === 'finished') {
@@ -61,7 +82,7 @@ export const checkAllTransactionStatus = async (
 
     bot.sendMessage(
       chatId,
-      `Your transaction status is ${transactionStatus.status}.`,
+      `Your transaction ${transaction.transactionId} status is ${transactionStatus.status}.`,
     );
   });
 };

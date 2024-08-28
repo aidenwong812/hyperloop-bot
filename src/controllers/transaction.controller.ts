@@ -2,7 +2,11 @@ import prisma from 'configs/database';
 import store from 'store';
 
 export const findAllTransactions = async () => {
-  const transactions = await prisma.transaction.findMany();
+  const transactions = await prisma.transaction.findMany({
+    where: {
+      isValid: true,
+    },
+  });
   return transactions;
 };
 
@@ -37,4 +41,20 @@ export const updateTransaction = async (transactionId: string, params: any) => {
   store.setTransaction(transaction);
 
   return transaction;
+};
+
+export const deleteTransaction = async (transactionId: string) => {
+  const transaction = await prisma.transaction.findFirst({
+    where: {
+      transactionId,
+    },
+  });
+
+  if (transaction) {
+    await prisma.transaction.delete({
+      where: {
+        transactionId,
+      },
+    });
+  }
 };
