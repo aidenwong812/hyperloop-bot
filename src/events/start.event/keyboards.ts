@@ -1,5 +1,6 @@
 export const StartKeyboard = () => [
-  [{ text: 'Start new exchange', callback_data: 'Start new exchange' }],
+  [{ text: 'Start new exchange' }],
+  [{ text: 'Check Status' }],
   [{ text: '❕ Advertise' }],
 ];
 
