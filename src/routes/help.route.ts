@@ -10,7 +10,7 @@ const helpRouter = (bot: TelegramBot) => {
     if (text === '❕ Advertise') {
       bot.sendMessage(
         msg.chat.id,
-        'Coming soon. Dm @livewager to secure advertisement slots',
+        'Coming soon. Dm https://t.me/adhyperloop to secure advertisement slots',
       );
     }
   });
