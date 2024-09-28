@@ -89,14 +89,31 @@ export const createExchangeTransaction = async (
   inputAmount: number,
   recipientAddress: string,
 ): Promise<ExchangeTransaction> => {
-  const res = await axios.post(`${V1_BASE_URL}/transactions/${apiKey}`, {
-    from: inputCurrency,
-    to: outputCurrency,
-    amount: inputAmount,
-    address: recipientAddress,
-  });
+  try {
+    const res = await axios.post(`${V1_BASE_URL}/transactions/${apiKey}`, {
+      from: inputCurrency,
+      to: outputCurrency,
+      amount: inputAmount,
+      address: recipientAddress,
+    });
 
-  return res.data;
+    return res.data;
+  } catch (error: any) {
+    // eslint-disable-next-line no-console
+    console.error(error.response.data);
+
+    return {
+      id: '',
+      payinAddress: '',
+      payoutAddress: recipientAddress,
+      fromCurrency: inputCurrency,
+      toCurrency: outputCurrency,
+      amount: inputAmount,
+      directedAmount: 0,
+      error: error.response.data.error,
+      message: error.response.data.message,
+    };
+  }
 };
 
 export const getTransactionStatus = async (

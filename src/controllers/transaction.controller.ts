@@ -1,5 +1,6 @@
 import prisma from 'configs/database';
 import store from 'store';
+import { createUser } from './user.controller';
 
 export const findAllTransactions = async () => {
   const transactions = await prisma.transaction.findMany({
@@ -12,6 +13,9 @@ export const findAllTransactions = async () => {
 
 export const createTransaction = async (params: any) => {
   try {
+    const { userId } = params;
+    await createUser(Number(userId), '');
+
     const transaction = await prisma.transaction.create({
       data: params,
     });
@@ -31,12 +35,22 @@ export const findTransaction = (transactionId: string) => {
 };
 
 export const updateTransaction = async (transactionId: string, params: any) => {
-  const transaction = await prisma.transaction.update({
+  let transaction = await prisma.transaction.findUnique({
     where: {
       transactionId,
     },
-    data: params,
   });
+
+  if (transaction) {
+    transaction = await prisma.transaction.update({
+      where: {
+        transactionId,
+      },
+      data: params,
+    });
+  } else {
+    transaction = await createTransaction({ transactionId, ...params });
+  }
 
   store.setTransaction(transaction);
 
