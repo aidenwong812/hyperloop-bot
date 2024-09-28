@@ -11,13 +11,21 @@ export const createUser = async (id: number, username: string, code = null) => {
   try {
     const referrerId = code && decrypt(code);
 
-    const userController = await prisma.user.create({
-      data: {
+    let userController = await prisma.user.findUnique({
+      where: {
         id,
-        username,
-        referrerId,
       },
     });
+
+    if (!userController) {
+      userController = await prisma.user.create({
+        data: {
+          id,
+          username,
+          referrerId,
+        },
+      });
+    }
 
     store.setUser(userController);
     store.setReferrer(userController);

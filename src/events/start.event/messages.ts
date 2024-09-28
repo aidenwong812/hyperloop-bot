@@ -10,6 +10,7 @@ export const WelcomeMessage = () => {
 export const CheckCurrenciesMessage = () => {
   return `
     These are the currencies currently supported:
+    - Bitcoin (BTC)
     - Ethereum (ETH)
     - Ethereum (Base)
     - Ethereum (Binance Smart Chain)

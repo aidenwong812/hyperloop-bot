@@ -18,6 +18,7 @@ export const selectInputCurrency = async (
   let selectedCurrency = [];
 
   if (
+    currency === 'Bitcoin (BTC)' ||
     currency === 'Ethereum (ETH)' ||
     currency === 'Tron (TRX)' ||
     currency === 'Solana (SOL)' ||
@@ -80,6 +81,7 @@ export const selectOutputCurrency = async (
   let selectedCurrency = [];
 
   if (
+    currency === 'Bitcoin (BTC)' ||
     currency === 'Ethereum (ETH)' ||
     currency === 'Tron (TRX)' ||
     currency === 'Solana (SOL)' ||

@@ -77,7 +77,11 @@ export const checkAllTransactionStatus = async (
         transactionStatus.amountSend,
       );
       updateUser(user.id, { airdrop: user.airdrop + airdropPoint });
-      updateTransaction(transactionStatus.id, { isValid: false });
+      updateTransaction(transaction.transactionId, {
+        isValid: false,
+        userId: user.id,
+        status: transactionStatus.status,
+      });
     }
 
     bot.sendMessage(
